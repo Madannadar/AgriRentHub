@@ -11,6 +11,7 @@ import {
   serverTimestamp,
   updateDoc,
   where,
+  deleteDoc
 } from "firebase/firestore";
 import { db } from "./firebase";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -350,6 +351,28 @@ export async function relistEquipment(equipmentId) {
     console.log("Equipment has been relisted successfully.");
   } catch (error) {
     console.error("Error relisting equipment:", error);
+    throw error; // Propagate error
+  }
+}
+
+export async function deleteEquipmentByName(equipmentName) {
+  try {
+    const equipmentCollection = collection(db, "equipments");
+    const q = query(equipmentCollection, where("Name", "==", equipmentName));
+
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      throw new Error(`No equipment found with name "${equipmentName}"`);
+    }
+
+    querySnapshot.forEach(async (docSnapshot) => {
+      await deleteDoc(doc(db, "equipments", docSnapshot.id));
+      console.log(`Deleted equipment: ${equipmentName}`);
+    });
+
+  } catch (error) {
+    console.error("Error deleting equipment:", error);
     throw error; // Propagate error
   }
 }
