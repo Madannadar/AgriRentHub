@@ -7,8 +7,10 @@ import {
 import "./EquipmentInventory.css";
 import Loading from "../../Loading/Loading";
 import { StyledButton } from "../../../App";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 const EquipmentInventory = () => {
+  const { t } = useTranslation(); // Use the useTranslation hook
   const [equipmentList, setEquipmentList] = useState([]);
   const [loading, setLoading] = useState(true);
   const { currentUser } = useAuth();
@@ -65,28 +67,28 @@ const EquipmentInventory = () => {
             />
             <div className="EquipmentInventoryCardTextContainer">
               <span>
-                <b>Equipment Name:</b>
+                <b>{t('equipmentInventory.equipmentName')}:</b>
                 <br />
                 {equipment.Name}
               </span>
               <span>
-                <b>Description:</b>
+                <b>{t('equipmentInventory.description')}:</b>
                 <br />
                 {equipment.Description}
               </span>
               <span>
-                <b>Location:</b> {equipment.Location}
+                <b>{t('equipmentInventory.location')}:</b> {equipment.Location}
               </span>
               <span>
-                <b>Price:</b> ${equipment.Price}
+                <b>{t('equipmentInventory.price')}:</b> ${equipment.Price}
               </span>
               <span>
-                <b>Status:</b> {equipment.Status}
+                <b>{t('equipmentInventory.status')}:</b> {equipment.Status}
               </span>
               {equipment.Status === "Not Available" &&
                 equipment.dropOffDate && (
                   <span>
-                    <b>Drop-off Date:</b> {equipment.dropOffDate}
+                    <b>{t('equipmentInventory.dropOffDate')}:</b> {equipment.dropOffDate}
                   </span>
                 )}
               {equipment.Status === "Not Available" &&
@@ -100,7 +102,7 @@ const EquipmentInventory = () => {
                     onClick={() => handleRelist(equipment.EquipmentId)}
                     disabled={equipment.relisting || loading} // Disable if relisting or loading
                   >
-                    {equipment.relisting ? "Relisting..." : "Relist Equipment"}
+                    {equipment.relisting ? t('equipmentInventory.relisting') : t('equipmentInventory.relistEquipment')}
                   </StyledButton>
                 )}
             </div>
@@ -108,7 +110,7 @@ const EquipmentInventory = () => {
         ))
       ) : (
         <div className="EquipmentInventoryContainerTitle">
-          No equipment owned by this user.
+          {t('equipmentInventory.noEquipment')}
         </div>
       )}
     </div>

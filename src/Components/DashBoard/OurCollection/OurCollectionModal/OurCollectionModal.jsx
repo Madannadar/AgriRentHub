@@ -4,6 +4,7 @@ import { StyledButton } from "../../../../App";
 import { Alert, Snackbar } from "@mui/material";
 import { bookEquipment } from "../../../../Firebase/firebbaseFunctions";
 import { useAuth } from "../../../../AuthContext";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 const ErrorPopup = ({ open, onClose, message }) => {
   return (
@@ -25,6 +26,7 @@ const ErrorPopup = ({ open, onClose, message }) => {
 };
 
 const OurCollectionModal = ({ isOpen, onClose, equipment }) => {
+  const { t } = useTranslation(); // Use the useTranslation hook
   const [pickupDate, setPickupDate] = useState("");
   const [numberOfDays, setNumberOfDays] = useState(1); // Default to 1 day
   const [dropOffDate, setDropOffDate] = useState("");
@@ -71,13 +73,13 @@ const OurCollectionModal = ({ isOpen, onClose, equipment }) => {
 
   async function handleCheckout() {
     if (!pickupDate) {
-      setErrorMessage("Please select a pickup date.");
+      setErrorMessage(t('ourCollectionModal.error.selectPickupDate'));
       setErrorOpen(true);
     } else if (numberOfDays <= 0) {
-      setErrorMessage("Please set number of days greater than 0");
+      setErrorMessage(t('ourCollectionModal.error.invalidNumberOfDays'));
       setErrorOpen(true);
     } else if (currentUser.uid === equipment.Owner) {
-      setErrorMessage("You cannot book your own equipment.");
+      setErrorMessage(t('ourCollectionModal.error.cannotBookOwnEquipment'));
       setErrorOpen(true);
     } else {
       // Proceed to checkout logic here
@@ -92,7 +94,7 @@ const OurCollectionModal = ({ isOpen, onClose, equipment }) => {
         console.log("Booking successful...");
         onClose(); // Close modal after processing
       } catch (error) {
-        setErrorMessage("There was an error processing your booking.");
+        setErrorMessage(t('ourCollectionModal.error.bookingError'));
         setErrorOpen(true);
       } finally {
         setLoading(false); // Reset loading state
@@ -112,7 +114,7 @@ const OurCollectionModal = ({ isOpen, onClose, equipment }) => {
       <div className="OurCollectionModalBackground" onClick={onClose} />
       <div className="OurCollectionModalContent">
         <button className="close-button" onClick={onClose}>
-          X
+          {t('ourCollectionModal.close')}
         </button>
         {equipment && (
           <div className="OurCollectionModalContainer">
@@ -125,14 +127,14 @@ const OurCollectionModal = ({ isOpen, onClose, equipment }) => {
                 {equipment.Description}
               </div>
               <div className="OurCollectionModalLocationContainer">
-                <b>Location: </b>
+                <b>{t('ourCollectionModal.location')}: </b>
                 {equipment.Location}
               </div>
               <div className="OurCollectionModalPriceContainer">
-                <b>Price: </b>${equipment.Price} per day
+                <b>{t('ourCollectionModal.price')}: </b>${equipment.Price} {t('ourCollectionModal.perDay')}
               </div>
               <div className="OurCollectionModalPickUpDateContainer">
-                <b>Pick-up Date: </b>
+                <b>{t('ourCollectionModal.pickUpDate')}: </b>
                 <input
                   type="date"
                   id="pickup-date"
@@ -143,7 +145,7 @@ const OurCollectionModal = ({ isOpen, onClose, equipment }) => {
                 />
               </div>
               <div className="OurCollectionModalNumberOfDaysContainer">
-                <b>Number of Days: </b>
+                <b>{t('ourCollectionModal.numberOfDays')}: </b>
                 <input
                   type="number"
                   id="number-of-days"
@@ -153,11 +155,11 @@ const OurCollectionModal = ({ isOpen, onClose, equipment }) => {
                 />
               </div>
               <div className="OurCollectionModalDropOffDateContainer">
-                <b>Drop-off Date: </b>
-                {dropOffDate || "Please pick up date and number of days"}
+                <b>{t('ourCollectionModal.dropOffDate')}: </b>
+                {dropOffDate || t('ourCollectionModal.error.selectPickupDate')}
               </div>
               <div className="OurCollectionModalTotal">
-                <b>Total: </b>
+                <b>{t('ourCollectionModal.total')}: </b>
                 <span>${equipment.Price * numberOfDays}</span>
               </div>
               <div className="OurCollectionModalButtonContainer">
@@ -169,7 +171,7 @@ const OurCollectionModal = ({ isOpen, onClose, equipment }) => {
                   onClick={handleCheckout}
                   disabled={loading} // Disable button while loading
                 >
-                  {loading ? "Processing..." : "Proceed to Checkout"}
+                  {loading ? t('ourCollectionModal.processing') : t('ourCollectionModal.proceedToCheckout')}
                 </StyledButton>
               </div>
             </div>

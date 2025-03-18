@@ -7,11 +7,12 @@ import SupportandHelp from "./SupportandHelp/SupportandHelp";
 import AccountSettings from "./AccountSettings/AccountSettings";
 import EquipmentInventory from "./EquipmentInventory/EquipmentInventory";
 import RentalHistory from "./RentalHistory/RentalHistory";
+import { useTranslation } from "react-i18next"; // Import translation hook
 
 export default function Profile({ setShowProfile }) {
   const { currentUser, loading } = useAuth();
-
-  const [mainContent, setMainContent] = useState("Personal Information");
+  const { t } = useTranslation(); // Initialize translation
+  const [mainContent, setMainContent] = useState("personalInfo");
 
   return (
     <div className="ProfileContainer">
@@ -21,61 +22,45 @@ export default function Profile({ setShowProfile }) {
       />
       <div className="ProfileSubContainer">
         <div className="ProfileSubContainerSideBar">
-          <div className="ProfileSubContainerSideBarTitle">Profile</div>
+          <div className="ProfileSubContainerSideBarTitle">{t("profile.title")}</div>
           <button
-            className={mainContent === "Personal Information" ? "active" : null}
-            onClick={() => setMainContent("Personal Information")}
+            className={mainContent === "personalInfo" ? "active" : null}
+            onClick={() => setMainContent("personalInfo")}
           >
-            Personal Information
+            {t("profile.personalInfo")}
           </button>
           <button
-            className={mainContent === "Rental History" ? "active" : null}
-            onClick={() => setMainContent("Rental History")}
+            className={mainContent === "rentalHistory" ? "active" : null}
+            onClick={() => setMainContent("rentalHistory")}
           >
-            Rental History
+            {t("profile.rentalHistory")}
           </button>
           <button
-            className={mainContent === "Equipment Inventory" ? "active" : null}
-            onClick={() => setMainContent("Equipment Inventory")}
+            className={mainContent === "equipmentInventory" ? "active" : null}
+            onClick={() => setMainContent("equipmentInventory")}
           >
-            Equipment Inventory
+            {t("profile.equipmentInventory")}
           </button>
           <button
-            className={mainContent === "Support and Help" ? "active" : null}
-            onClick={() => setMainContent("Support and Help")}
+            className={mainContent === "supportHelp" ? "active" : null}
+            onClick={() => setMainContent("supportHelp")}
           >
-            Support and Help
+            {t("profile.supportHelp")}
           </button>
           <button
-            className={mainContent === "Account Settings" ? "active" : null}
-            onClick={() => setMainContent("Account Settings")}
+            className={mainContent === "accountSettings" ? "active" : null}
+            onClick={() => setMainContent("accountSettings")}
           >
-            Account Settings
+            {t("profile.accountSettings")}
           </button>
         </div>
         <div className="ProfileSubConatinerMainInfo">
-          <div className="ProfileSubConatinerMainInfoTitle">{mainContent}</div>
-          {mainContent === "Personal Information" ? (
-            <PersonalInformation />
-          ) : null}
-          {mainContent === "Account Settings" ? (
-            <AccountSettings setShowProfile={setShowProfile} />
-          ) : null}
-          {mainContent === "Support and Help" ? (
-            <>
-              <SupportandHelp />
-            </>
-          ) : null}
-          {mainContent === "Equipment Inventory" ? (
-            <>
-              <EquipmentInventory />
-            </>
-          ) : null}
-          {mainContent === "Rental History" ? (
-            <>
-              <RentalHistory />
-            </>
-          ) : null}
+          <div className="ProfileSubConatinerMainInfoTitle">{t(`profile.${mainContent}`)}</div>
+          {mainContent === "personalInfo" ? <PersonalInformation /> : null}
+          {mainContent === "accountSettings" ? <AccountSettings setShowProfile={setShowProfile} /> : null}
+          {mainContent === "supportHelp" ? <SupportandHelp /> : null}
+          {mainContent === "equipmentInventory" ? <EquipmentInventory /> : null}
+          {mainContent === "rentalHistory" ? <RentalHistory /> : null}
         </div>
       </div>
     </div>

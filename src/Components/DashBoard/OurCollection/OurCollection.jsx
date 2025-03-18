@@ -4,8 +4,10 @@ import "./OurCollection.css";
 import { StyledButton } from "../../../App";
 import OurCollectionModal from "./OurCollectionModal/OurCollectionModal";
 import Loading from "../../Loading/Loading";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 export default function OurCollection() {
+  const { t } = useTranslation(); // Use the useTranslation hook
   const [equipments, setEquipments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -68,14 +70,14 @@ export default function OurCollection() {
   if (error)
     return (
       <div>
-        <p>Error: {error}</p>
-        <button onClick={handleRetry}>Retry</button>
+        <p>{t('ourCollection.error')}: {error}</p>
+        <button onClick={handleRetry}>{t('ourCollection.retry')}</button>
       </div>
     );
 
   return (
     <div className="OurCollectionContainer">
-      <div className="OurCollectionTitle">Our Collection</div>
+      <div className="OurCollectionTitle">{t('ourCollection.title')}</div>
       <div className="OurCollectionSubContainer">
         {currentItems.map((equipment, i) => (
           <div className="OurCollectionCardContainer" key={i}>
@@ -92,11 +94,11 @@ export default function OurCollection() {
               </div>
               <div>{equipment.Description}</div>
               <div>
-                <b>Location: </b>
+                <b>{t('ourCollection.location')}: </b>
                 {equipment.Location}
               </div>
               <div>
-                <b>Price: </b>Rs {equipment.Price} per day
+                <b>{t('ourCollection.price')}: </b>Rs {equipment.Price} {t('ourCollection.perDay')}
               </div>
               <StyledButton
                 variant="contained"
@@ -105,7 +107,7 @@ export default function OurCollection() {
                 disableRipple
                 onClick={() => handleBookClick(equipment)}
               >
-                Book Now
+                {t('ourCollection.bookNow')}
               </StyledButton>
             </div>
           </div>
@@ -120,10 +122,10 @@ export default function OurCollection() {
           onClick={prevPage}
           disabled={currentPage === 1}
         >
-          Previous
+          {t('ourCollection.previous')}
         </StyledButton>
 
-        <span>{` Page ${currentPage} of ${totalPages} `}</span>
+        <span>{` ${t('ourCollection.page')} ${currentPage} ${t('ourCollection.of')} ${totalPages} `}</span>
         <StyledButton
           variant="contained"
           disableElevation
@@ -132,7 +134,7 @@ export default function OurCollection() {
           onClick={nextPage}
           disabled={currentPage === totalPages}
         >
-          Next
+          {t('ourCollection.next')}
         </StyledButton>
       </div>
       <OurCollectionModal

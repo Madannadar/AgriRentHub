@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { signOutUser } from "../../../Firebase/authFunction";
 import "./AccountSettings.css";
 import { StyledButton } from "../../../App";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 export default function AccountSettings({ setShowProfile }) {
+  const { t } = useTranslation(); // Use the useTranslation hook
   const [isSigningOut, setIsSigningOut] = useState(false);
 
   const handleSignOut = async () => {
@@ -14,7 +16,9 @@ export default function AccountSettings({ setShowProfile }) {
 
   return (
     <div className="AccountSettings">
-      <div className="AccountSettingsTitle">Sign Out :</div>
+      <div className="AccountSettingsTitle">
+        {t('accountSettings.signOutTitle')}
+      </div>
       <div className="AccountSettingsButton">
         <StyledButton
           variant="contained"
@@ -24,7 +28,7 @@ export default function AccountSettings({ setShowProfile }) {
           onClick={handleSignOut}
           disabled={isSigningOut} // Disable button when signing out
         >
-          {isSigningOut ? "Signing out..." : "Sign Out"}
+          {isSigningOut ? t('accountSettings.signingOut') : t('accountSettings.signOutButton')}
         </StyledButton>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import "./OurServices.css";
 import SettingImage from "../../../images/Capture-removebg-preview.png";
+import { useTranslation } from "react-i18next";
 
 const Card = ({ title, content }) => {
   return (
@@ -13,48 +14,20 @@ const Card = ({ title, content }) => {
 };
 
 export default function OurServices() {
+  const { t } = useTranslation();
+
   return (
     <div className="OurServices">
-      <div className="OurServicesTitle">Our Services.</div>
+      <div className="OurServicesTitle">{t("ourServices.title")}</div>
       <div className="OurServicesRow">
-        <Card
-          title={"Equipment Rental"}
-          content={
-            "Access a diverse fleet of high-quality farm machinery for rent, including tractors, combines, plows, and more. Our equipment is well-maintained and ready to handle your agricultural needs."
-          }
-        />
-        <Card
-          title={"Custom Rental Solutions"}
-          content={
-            "Tailored rental solutions to meet your specific needs. Whether you require specialized equipment or a unique rental arrangement, we’re here to accommodate."
-          }
-        />
-        <Card
-          title={"Seasonal Promotions"}
-          content={
-            "Special offers and discounts on equipment rentals during peak seasons or for long-term rentals."
-          }
-        />
+        <Card title={t("ourServices.equipmentRental.title")} content={t("ourServices.equipmentRental.content")} />
+        <Card title={t("ourServices.customRentalSolutions.title")} content={t("ourServices.customRentalSolutions.content")} />
+        <Card title={t("ourServices.seasonalPromotions.title")} content={t("ourServices.seasonalPromotions.content")} />
       </div>
       <div className="OurServicesRow">
-        <Card
-          title={"Rental History"}
-          content={
-            "Rental history is a record of a tenant's previous rental experiences, including payment habits and references. It's used by landlords to assess the reliability of potential tenants."
-          }
-        />
-        <Card
-          title={"Weather Forecast"}
-          content={
-            "Weather forecasts predict future atmospheric conditions like temperature, precipitation, and wind. They help people plan activities and prepare for changing weather."
-          }
-        />
-        <Card
-          title={"Crop Management"}
-          content={
-            "Crop management involves optimizing planting, irrigation, and pest control to enhance crop growth and yield. It ensures sustainable farming by efficiently using resources and minimizing losses."
-          }
-        />
+        <Card title={t("ourServices.rentalHistory.title")} content={t("ourServices.rentalHistory.content")} />
+        <Card title={t("ourServices.weatherForecast.title")} content={t("ourServices.weatherForecast.content")} />
+        <Card title={t("ourServices.cropManagement.title")} content={t("ourServices.cropManagement.content")} />
       </div>
     </div>
   );

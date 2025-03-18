@@ -6,8 +6,10 @@ import {
   updateUserData,
 } from "../../../Firebase/firebbaseFunctions";
 import { StyledButton } from "../../../App";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 export default function PersonalInformation() {
+  const { t } = useTranslation(); // Use the useTranslation hook
   const { currentUser } = useAuth();
   const [userData, setUserData] = useState(null);
 
@@ -98,73 +100,85 @@ export default function PersonalInformation() {
   return (
     <div className="PersonalInformationContainer">
       <div className="PersonalInformationSubContainer">
-        <div className="PersonalInformationSubContainerTitle">Name</div>
+        <div className="PersonalInformationSubContainerTitle">
+          {t('personalInformation.name')}
+        </div>
         <div className="PersonalInformationSubContainerCard">
           <div className="PersonalInformationSubContainerCardLabel">
-            First Name:
+            {t('personalInformation.firstName')}:
           </div>
           <input
             className="PersonalInformationSubContainerCardInput"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="First Name"
+            placeholder={t('personalInformation.firstName')}
           />
         </div>
         <div className="PersonalInformationSubContainerCard">
           <div className="PersonalInformationSubContainerCardLabel">
-            Last Name:
+            {t('personalInformation.lastName')}:
           </div>
           <input
             className="PersonalInformationSubContainerCardInput"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            placeholder="Last Name"
+            placeholder={t('personalInformation.lastName')}
           />
         </div>
       </div>
 
       <div className="PersonalInformationSubContainer">
-        <div className="PersonalInformationSubContainerTitle">Contact</div>
+        <div className="PersonalInformationSubContainerTitle">
+          {t('personalInformation.contact')}
+        </div>
         <div className="PersonalInformationSubContainerCard">
           <div className="PersonalInformationSubContainerCardLabel">
-            Phone Number:
+            {t('personalInformation.phoneNumber')}:
           </div>
           <input
             className="PersonalInformationSubContainerCardInput"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            placeholder="Phone Number"
+            placeholder={t('personalInformation.phoneNumber')}
           />
         </div>
         <div className="PersonalInformationSubContainerCard">
-          <div className="PersonalInformationSubContainerCardLabel">Email:</div>
+          <div className="PersonalInformationSubContainerCardLabel">
+            {t('personalInformation.email')}:
+          </div>
           <input
             className="PersonalInformationSubContainerCardInput"
             value={email}
-            placeholder="Email"
+            placeholder={t('personalInformation.email')}
             readOnly
           />
         </div>
       </div>
 
       <div className="PersonalInformationSubContainer">
-        <div className="PersonalInformationSubContainerTitle">Address</div>
+        <div className="PersonalInformationSubContainerTitle">
+          {t('personalInformation.address')}
+        </div>
         <div className="PersonalInformationSubContainerCard">
-          <div className="PersonalInformationSubContainerCardLabel">State:</div>
+          <div className="PersonalInformationSubContainerCardLabel">
+            {t('personalInformation.state')}:
+          </div>
           <input
             className="PersonalInformationSubContainerCardInput"
             value={state}
             onChange={(e) => setState(e.target.value)}
-            placeholder="State"
+            placeholder={t('personalInformation.state')}
           />
         </div>
         <div className="PersonalInformationSubContainerCard">
-          <div className="PersonalInformationSubContainerCardLabel">City:</div>
+          <div className="PersonalInformationSubContainerCardLabel">
+            {t('personalInformation.city')}:
+          </div>
           <input
             className="PersonalInformationSubContainerCardInput"
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            placeholder="City"
+            placeholder={t('personalInformation.city')}
           />
         </div>
       </div>
@@ -179,7 +193,7 @@ export default function PersonalInformation() {
             onClick={handleSave}
             disabled={loading} // Disable button if loading
           >
-            {loading ? "Saving..." : "Save"} {/* Change button text */}
+            {loading ? t('personalInformation.saving') : t('personalInformation.save')}
           </StyledButton>
         </div>
       )}

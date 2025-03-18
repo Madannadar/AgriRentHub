@@ -7,8 +7,10 @@ import WindSpeed from "../../../images/WindSpeedIcon.png";
 import Humidity from "../../../images/HumidityIcon.png";
 import Condition from "../../../images/ConditionIcon.png";
 import { StyledButton } from "../../../App";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 const Weather = () => {
+  const { t } = useTranslation(); // Use the useTranslation hook
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState(null);
   const [forecastData, setForecastData] = useState(null);
@@ -30,7 +32,7 @@ const Weather = () => {
       setForecastData(forecastResponse.data);
       setError("");
     } catch (err) {
-      setError("City not found");
+      setError(t('weather.cityNotFound'));
       setWeatherData(null);
       setForecastData(null);
     }
@@ -151,11 +153,11 @@ const Weather = () => {
 
   return (
     <div className="WeatherContainer">
-      <div className="WeatherContainerTitle">Weather Forecast</div>
+      <div className="WeatherContainerTitle">{t('weather.title')}</div>
       <div className="TodaysWeatherContainer">
         <div className="TodaysWeatherSubContainer">
           {loadingUserData ? (
-            <p>Loading user data...</p>
+            <p>{t('weather.loadingUserData')}</p>
           ) : (
             <>
               <div className="TodayWeatherSubContainerInput">
@@ -166,7 +168,7 @@ const Weather = () => {
                     setCity(e.target.value);
                     setError("");
                   }}
-                  placeholder="Enter city name"
+                  placeholder={t('weather.enterCity')}
                 />
                 <StyledButton
                   variant="contained"
@@ -175,7 +177,7 @@ const Weather = () => {
                   disableRipple
                   onClick={() => getWeather(city)}
                 >
-                  Get Weather
+                  {t('weather.getWeather')}
                 </StyledButton>
               </div>
               {error && <p>{error}</p>}
@@ -185,21 +187,21 @@ const Weather = () => {
                     <p style={{ fontSize: "24px" }}>{fullDate}</p>
                     <p style={{ fontSize: "14px" }}>{dayOfWeek}</p>
                     <p>
-                      <img src={WindSpeed} alt="Wind Speed" />{" "}
-                      <b>Wind Speed:</b> {weatherData.wind.speed} m/s
+                      <img src={WindSpeed} alt={t('weather.windSpeed')} />{" "}
+                      <b>{t('weather.windSpeed')}:</b> {weatherData.wind.speed} {t('weather.units.windSpeedUnit')}
                     </p>
                     <p>
-                      <img src={Humidity} alt="Humidity" /> <b>Humidity:</b>{" "}
-                      {weatherData.main.humidity}%
+                      <img src={Humidity} alt={t('weather.humidity')} /> <b>{t('weather.humidity')}:</b>{" "}
+                      {weatherData.main.humidity}{t('weather.units.humidityUnit')}
                     </p>
                     <p>
-                      <img src={Condition} alt="Condition" /> <b>Condition:</b>{" "}
+                      <img src={Condition} alt={t('weather.condition')} /> <b>{t('weather.condition')}:</b>{" "}
                       {weatherData.weather[0].description}
                     </p>
                   </div>
                   <div className="TemperatureInfo">
                     <div className="TemperatureInfoText">
-                      {weatherData.main.temp} °C
+                      {weatherData.main.temp} {t('weather.units.temperatureUnit')}
                     </div>
                     <img
                       src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
@@ -208,7 +210,7 @@ const Weather = () => {
                   </div>
                 </div>
               )}
-              {!city && <p>Please enter a city to see the weather.</p>}
+              {!city && <p>{t('weather.pleaseEnterCity')}</p>}
             </>
           )}
         </div>
@@ -217,32 +219,32 @@ const Weather = () => {
       <div className="WeeksWeather">
         {dailyForecast.length > 0 && (
           <div className="ForecastCardsContainer">
-            <div className="ForecastCardsContainerTitle">4 Day Forecast</div>
+            <div className="ForecastCardsContainerTitle">{t('weather.forecastTitle')}</div>
             <div className="ForecastCards">
               {dailyForecast.map(([date, data]) => (
                 <div className="ForecastCard" key={date}>
                   <div className="ForecastDay">
-                    <b>{data.day}</b>
+                    <b>{t(`weather.days.${data.day.toLowerCase()}`)}</b>
                   </div>
                   <div className="ForecastDate">{date}</div>
                   <div className="ForecastDetails">
                     <div className="ForecastColumn">
                       <p>
-                        <img src={WindSpeed} alt="Wind Speed" />{" "}
-                        <b>Wind Speed:</b> {data.windSpeed} m/s
+                        <img src={WindSpeed} alt={t('weather.windSpeed')} />{" "}
+                        <b>{t('weather.windSpeed')}:</b> {data.windSpeed} {t('weather.units.windSpeedUnit')}
                       </p>
                       <p>
-                        <img src={Humidity} alt="Humidity" /> <b>Humidity:</b>{" "}
-                        {data.humidity}%
+                        <img src={Humidity} alt={t('weather.humidity')} /> <b>{t('weather.humidity')}:</b>{" "}
+                        {data.humidity}{t('weather.units.humidityUnit')}
                       </p>
                       <p>
-                        <img src={Condition} alt="Condition" />{" "}
-                        <b>Condition:</b> {data.condition}
+                        <img src={Condition} alt={t('weather.condition')} />{" "}
+                        <b>{t('weather.condition')}:</b> {data.condition}
                       </p>
                     </div>
                     <div className="ForecastColumn">
                       <p>
-                        <b>{data.temperature} °C</b>
+                        <b>{data.temperature} {t('weather.units.temperatureUnit')}</b>
                       </p>
                       <img
                         src={`https://openweathermap.org/img/wn/${data.icon}.png`}

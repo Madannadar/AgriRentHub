@@ -5,8 +5,10 @@ import OurCollection from "../DashBoard/OurCollection/OurCollection";
 import AddEquipment from "../DashBoard/AddEuipment/AddEquipment";
 import "./HomePageAfterLogin.css";
 import Footer from "../HomePage/Footer/Footer";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 export default function HomePageAfterLogIn() {
+  const { t } = useTranslation(); // Use the useTranslation hook
   const [addEquipment, setAddEquipment] = useState(false);
 
   return (
@@ -16,8 +18,7 @@ export default function HomePageAfterLogIn() {
       <div className="HomePageAfterLoginButtonContainer">
         <div className="HomePageAfterLoginButtonSubContainer">
           <div>
-            Ready to earn extra income? Click here to add your equipment for
-            rent!
+            {t('homePageAfterLogin.readyToEarn')}
           </div>
           {addEquipment && <AddEquipment setAddEquipment={setAddEquipment} />}
           <StyledButton
@@ -27,7 +28,7 @@ export default function HomePageAfterLogIn() {
             disableRipple
             onClick={() => setAddEquipment(true)}
           >
-            Add Equipment
+            {t('homePageAfterLogin.addEquipment')}
           </StyledButton>
         </div>
       </div>
@@ -35,7 +36,6 @@ export default function HomePageAfterLogIn() {
     </div>
   );
 }
-
 // import React, { useState } from "react";
 // import NavBar from "../NavBar/NavBar";
 // import { StyledButton } from "../../App";

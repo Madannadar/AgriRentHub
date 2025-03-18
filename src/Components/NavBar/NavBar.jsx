@@ -9,14 +9,14 @@ import { useTranslation } from "react-i18next";
 
 const languages = [
   { code: "en", lang: "English" },
-  { code: "hi", lang: "Hindi" },
+  { code: "hi", lang: "हिन्दी" },
 ];
 
 function NavBar() {
   const navigate = useNavigate();
   const { currentUser, loading } = useAuth();
   const [showProfile, setShowProfile] = useState(false);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     document.body.dir = i18n.dir(i18n.language);
@@ -28,16 +28,18 @@ function NavBar() {
 
   return (
     <div className="NavBarContainer">
-      <div className="NavBarHead" onClick={() => navigate("/")}>FieldRentals</div>
+      <div className="NavBarHead" onClick={() => navigate("/")}>
+        {t("footer.title")}
+      </div>
       <div className="NavBarButtonContainer">
         <div className="NavBarLinks">
           {currentUser ? (
-            <div onClick={() => navigate("/our-services")}>Our Services</div>
+            <div onClick={() => navigate("/our-services")}>{t("nav.ourServices")}</div>
           ) : (
             <>
-              <a href="#Home">Home</a>
-              <a href="#AboutUs">About Us</a>
-              <a href="#OurServices">Service</a>
+              <a href="#Home">{t("nav.home")}</a>
+              <a href="#AboutUs">{t("nav.aboutUs")}</a>
+              <a href="#OurServices">{t("nav.services")}</a>
             </>
           )}
         </div>
@@ -55,7 +57,7 @@ function NavBar() {
               disableRipple
               onClick={() => navigate("/login-or-register")}
             >
-              Log In
+              {t("nav.logIn")}
             </StyledButton>
           )}
 

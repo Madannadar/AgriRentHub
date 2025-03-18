@@ -3,8 +3,10 @@ import { useAuth } from "../../../AuthContext";
 import { getRentalHistory } from "../../../Firebase/firebbaseFunctions"; // Import the new function
 import "./RentalHistory.css";
 import Loading from "../../Loading/Loading";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 const RentalHistory = () => {
+  const { t } = useTranslation(); // Use the useTranslation hook
   const [rentalHistory, setRentalHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const { currentUser } = useAuth();
@@ -36,20 +38,20 @@ const RentalHistory = () => {
             />
             <div className="RentalHistoryCardTextContainer">
               <span>
-                <b>Equipment Name:</b> {rental.equipmentName}
+                <b>{t('rentalHistory.equipmentName')}:</b> {rental.equipmentName}
               </span>
               <span>
-                <b>Pick Up Date:</b> {rental.pickUpDate}
+                <b>{t('rentalHistory.pickUpDate')}:</b> {rental.pickUpDate}
               </span>
               <span>
-                <b>Drop Off Date:</b> {rental.dropOffDate}
+                <b>{t('rentalHistory.dropOffDate')}:</b> {rental.dropOffDate}
               </span>
             </div>
           </div>
         ))
       ) : (
         <div className="RentalHistoryContainerTitle">
-          No rental history found for this user.
+          {t('rentalHistory.noRentalHistory')}
         </div>
       )}
     </div>

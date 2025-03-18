@@ -13,6 +13,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { StyledButton, StyledTextField } from "../../App";
 import { signIn, signUp } from "../../Firebase/authFunction";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 const ErrorPopup = ({ open, onClose, message }) => {
   return (
@@ -34,6 +35,7 @@ const ErrorPopup = ({ open, onClose, message }) => {
 };
 
 export default function AuthPage() {
+  const { t } = useTranslation(); // Use the useTranslation hook
   const [isSignupActive, setIsSignupActive] = useState(false);
 
   const [email, setEmail] = useState("");
@@ -51,16 +53,16 @@ export default function AuthPage() {
     if (email === "" || password === "" || confirmPassword === "") {
       flag = 1;
       console.log(password);
-      setErrorMsg("Please fill all the fields");
+      setErrorMsg(t('auth.errors.fillAllFields'));
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      setErrorMsg("Email address is invalid");
+      setErrorMsg(t('auth.errors.invalidEmail'));
       flag = 1;
     } else if (password.length < 8) {
       flag = 1;
-      setErrorMsg("Password must be at least 8 characters long");
+      setErrorMsg(t('auth.errors.passwordTooShort'));
     } else if (password !== confirmPassword) {
       flag = 1;
-      setErrorMsg("Passwords do not match");
+      setErrorMsg(t('auth.errors.passwordMismatch'));
     }
 
     if (flag === 0) {
@@ -78,13 +80,13 @@ export default function AuthPage() {
 
     if (email === "" || password === "") {
       flag = 1;
-      setErrorMsg("Please fill all the fields");
+      setErrorMsg(t('auth.errors.fillAllFields'));
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      setErrorMsg("Email address is invalid");
+      setErrorMsg(t('auth.errors.invalidEmail'));
       flag = 1;
     } else if (password.length < 8) {
       flag = 1;
-      setErrorMsg("Password must be at least 8 characters long");
+      setErrorMsg(t('auth.errors.passwordTooShort'));
     }
 
     if (flag === 0) {
@@ -110,11 +112,11 @@ export default function AuthPage() {
       >
         <div className="AuthPageSubContainerFormContainer SignUp">
           <form>
-            <div>FieldRentals</div>
+            <div>{t('auth.title')}</div>
             <StyledTextField
               fullWidth
               id="outlined-basic"
-              label="Email"
+              label={t('auth.email')}
               variant="outlined"
               size="small"
               onChange={(e) => setEmail(e.target.value)}
@@ -122,7 +124,7 @@ export default function AuthPage() {
             <StyledTextField
               fullWidth
               id="outlined-basic"
-              label="Password"
+              label={t('auth.password')}
               variant="outlined"
               size="small"
               onChange={(e) => setPassword(e.target.value)}
@@ -144,7 +146,7 @@ export default function AuthPage() {
             <StyledTextField
               fullWidth
               id="outlined-basic"
-              label="Confirm Password"
+              label={t('auth.confirmPassword')}
               variant="outlined"
               size="small"
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -171,16 +173,16 @@ export default function AuthPage() {
               disableRipple
               onClick={handleSignUp}
             >
-              Sign Up
+              {t('auth.signUp')}
             </StyledButton>
 
             <div className="AuthPageSubContainerFormContainerText">
               <div>
-                Already a member?{" "}
+                {t('auth.alreadyMember')}{" "}
                 <span onClick={() => setIsSignupActive(false)}>
-                  Log in here.
+                  {t('auth.loginHere')}
                 </span>{" "}
-                to get started with FieldRentals.
+                {t('auth.welcome')}
               </div>
             </div>
           </form>
@@ -188,42 +190,41 @@ export default function AuthPage() {
 
         <div className="AuthPageSubContainerToggleContainer">
           <div className="AuthPageSubContainerTogglePanel AuthPageSubContainerToggleSignUp">
-            <div className="Title">Welcome!</div>
+            <div className="Title">{t('auth.welcome')}</div>
             <div>
-              Join FieldRentals today and gain access to top-quality farming
-              equipment and tools for all your agricultural needs. Simply
-              complete the form below to start renting and optimizing your farm
-              operations!
+              {t('auth.signUpDescription')}
             </div>
             <div>
-              Already a member?{" "}
-              <span onClick={() => setIsSignupActive(false)}>Log in here.</span>{" "}
-              to get started with FieldRentals.
+              {t('auth.alreadyMember')}{" "}
+              <span onClick={() => setIsSignupActive(false)}>
+                {t('auth.loginHere')}
+              </span>{" "}
+              {t('auth.welcome')}
             </div>
           </div>
 
           <div className="AuthPageSubContainerTogglePanel AuthPageSubContainerToggleSignIn">
-            <div className="Title">Welcome Back!</div>
+            <div className="Title">{t('auth.welcomeBack')}</div>
             <div>
-              Log in to your FieldRentals account to access your dashboard,
-              manage your rentals, and explore the latest farming equipment and
-              tools.
+              {t('auth.signInDescription')}
             </div>
             <div>
-              Don’t have an account?{" "}
-              <span onClick={() => setIsSignupActive(true)}>Sign up here</span>{" "}
-              to get started with FieldRentals.
+              {t('auth.dontHaveAccount')}{" "}
+              <span onClick={() => setIsSignupActive(true)}>
+                {t('auth.signUpHere')}
+              </span>{" "}
+              {t('auth.welcome')}
             </div>
           </div>
         </div>
 
         <div className="AuthPageSubContainerFormContainer SignIn">
           <form>
-            <div>FieldRentals</div>
+            <div>{t('auth.title')}</div>
             <StyledTextField
               fullWidth
               id="outlined-basic"
-              label="Email"
+              label={t('auth.email')}
               variant="outlined"
               size="small"
               onChange={(e) => setEmail(e.target.value)}
@@ -231,7 +232,7 @@ export default function AuthPage() {
             <StyledTextField
               fullWidth
               id="outlined-basic"
-              label="Password"
+              label={t('auth.password')}
               variant="outlined"
               size="small"
               onChange={(e) => setPassword(e.target.value)}
@@ -257,16 +258,16 @@ export default function AuthPage() {
               disableRipple
               onClick={handleLogIn}
             >
-              Sign In
+              {t('auth.signIn')}
             </StyledButton>
 
             <div className="AuthPageSubContainerFormContainerText">
               <div>
-                Don’t have an account?{" "}
+                {t('auth.dontHaveAccount')}{" "}
                 <span onClick={() => setIsSignupActive(true)}>
-                  Sign up here
+                  {t('auth.signUpHere')}
                 </span>{" "}
-                to get started with FieldRentals.
+                {t('auth.welcome')}
               </div>
             </div>
           </form>

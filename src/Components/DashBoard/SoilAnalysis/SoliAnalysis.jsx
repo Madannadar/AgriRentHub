@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./SoilAnalysis.css";
 import { StyledButton } from "../../../App";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 function SoilAnalysis() {
+  const { t } = useTranslation(); // Use the useTranslation hook
   const [formData, setFormData] = useState({
     moisture: "",
     ph: "",
@@ -26,28 +28,25 @@ function SoilAnalysis() {
 
     // Soil Moisture Analysis
     if (moisture >= 30 && moisture <= 70) {
-      suggestionText += "Soil moisture is good for agriculture. ";
+      suggestionText += t('soilAnalysis.suggestions.moistureGood') + " ";
     } else {
-      suggestionText += "Soil moisture is not ideal for agriculture. ";
+      suggestionText += t('soilAnalysis.suggestions.moistureNotIdeal') + " ";
       if (moisture < 30) {
-        suggestionText += "Consider using mulch to retain soil moisture. ";
+        suggestionText += t('soilAnalysis.suggestions.moistureLow') + " ";
       } else if (moisture > 70) {
-        suggestionText +=
-          "Improve drainage or reduce irrigation to lower soil moisture. ";
+        suggestionText += t('soilAnalysis.suggestions.moistureHigh') + " ";
       }
     }
 
     // Soil pH Level Analysis
     if (ph >= 6 && ph <= 7.5) {
-      suggestionText += "Soil pH is good for agriculture. ";
+      suggestionText += t('soilAnalysis.suggestions.phGood') + " ";
     } else {
-      suggestionText += "Soil pH is not ideal for agriculture. ";
+      suggestionText += t('soilAnalysis.suggestions.phNotIdeal') + " ";
       if (ph < 6) {
-        suggestionText +=
-          "Apply lime to raise the pH to a more neutral level. ";
+        suggestionText += t('soilAnalysis.suggestions.phLow') + " ";
       } else if (ph > 7.5) {
-        suggestionText +=
-          "Apply sulfur or organic matter to lower the pH to a more acidic level. ";
+        suggestionText += t('soilAnalysis.suggestions.phHigh') + " ";
       }
     }
 
@@ -59,50 +58,42 @@ function SoilAnalysis() {
       npkValues[1] > 0 &&
       npkValues[2] > 0
     ) {
-      suggestionText += "Nutrient levels are good for agriculture. ";
+      suggestionText += t('soilAnalysis.suggestions.nutrientsGood') + " ";
       if (npkValues[0] < 10) {
-        suggestionText +=
-          "Consider a fertilizer high in nitrogen, such as Urea (46-0-0) or Ammonium Nitrate (34-0-0). ";
+        suggestionText += t('soilAnalysis.suggestions.nitrogenLow') + " ";
       }
       if (npkValues[1] < 5) {
-        suggestionText +=
-          "Consider adding a phosphorus-rich fertilizer, like Superphosphate (0-20-0) or Bone Meal. ";
+        suggestionText += t('soilAnalysis.suggestions.phosphorusLow') + " ";
       }
       if (npkValues[2] < 5) {
-        suggestionText +=
-          "Consider adding potassium-rich fertilizers like Potash (0-0-60) or Sulfate of Potash (0-0-50). ";
+        suggestionText += t('soilAnalysis.suggestions.potassiumLow') + " ";
       }
     } else {
-      suggestionText +=
-        "Nutrient levels are not ideal. Consider using a balanced fertilizer like NPK 10-10-10. ";
+      suggestionText += t('soilAnalysis.suggestions.nutrientsNotIdeal') + " ";
     }
 
     // Pest Detection and Analysis
     if (pest === "yes") {
-      // suggestionText += 'Pests detected. ';
+      suggestionText += t('soilAnalysis.suggestions.pestsDetected') + " ";
       switch (pestType) {
         case "aphids":
-          suggestionText +=
-            "Use an insecticidal soap or neem oil to control them. ";
+          suggestionText += t('soilAnalysis.suggestions.aphidsControl') + " ";
           break;
         case "mites":
-          suggestionText += "Use horticultural oil or a miticide. ";
+          suggestionText += t('soilAnalysis.suggestions.mitesControl') + " ";
           break;
         case "weevils":
-          suggestionText +=
-            "Apply beneficial nematodes or use a granular insecticide. ";
+          suggestionText += t('soilAnalysis.suggestions.weevilsControl') + " ";
           break;
         case "cutworms":
-          suggestionText +=
-            "Use diatomaceous earth or Bacillus thuringiensis (Bt) to control them. ";
+          suggestionText += t('soilAnalysis.suggestions.cutwormsControl') + " ";
           break;
         default:
-          suggestionText +=
-            "Consider using an appropriate pesticide or IPM practices based on the type of pest detected. ";
+          suggestionText += t('soilAnalysis.suggestions.otherPestControl') + " ";
           break;
       }
     } else {
-      // suggestionText += 'No pests detected. ';
+      suggestionText += t('soilAnalysis.suggestions.noPestsDetected') + " ";
     }
 
     setSuggestion(suggestionText);
@@ -111,11 +102,11 @@ function SoilAnalysis() {
   return (
     <div className="SoilAnalysisContainer">
       <div className="SoilAnalysisContainerTitle">
-        Soil Analysis and Fertilizer Suggestion
+        {t('soilAnalysis.title')}
       </div>
       <form id="soilForm">
         <label className="SoilAnalysisFormLabel" htmlFor="moisture">
-          Soil Moisture (%)
+          {t('soilAnalysis.soilMoisture')}
         </label>
         <input
           type="number"
@@ -125,12 +116,12 @@ function SoilAnalysis() {
           onChange={handleChange}
           min="0"
           max="100"
-          placeholder="40%-70% is recommended"
+          placeholder={t('soilAnalysis.moisturePlaceholder')}
           required
         />
 
         <label className="SoilAnalysisFormLabel" htmlFor="ph">
-          Soil pH Level
+          {t('soilAnalysis.soilPhLevel')}
         </label>
         <input
           type="number"
@@ -141,12 +132,12 @@ function SoilAnalysis() {
           step="0.1"
           min="0"
           max="14"
-          placeholder="eg:5.5-7.5 is recommended"
+          placeholder={t('soilAnalysis.phPlaceholder')}
           required
         />
 
         <label className="SoilAnalysisFormLabel" htmlFor="nutrients">
-          Nutrient Level (N-P-K)
+          {t('soilAnalysis.nutrientLevel')}
         </label>
         <input
           type="text"
@@ -154,12 +145,12 @@ function SoilAnalysis() {
           name="nutrients"
           value={formData.nutrients}
           onChange={handleChange}
-          placeholder="e.g., 10-5-5"
+          placeholder={t('soilAnalysis.nutrientPlaceholder')}
           required
         />
 
         <label className="SoilAnalysisFormLabel" htmlFor="pest">
-          Pests Detected
+          {t('soilAnalysis.pestsDetected')}
         </label>
         <select
           id="pest"
@@ -167,14 +158,14 @@ function SoilAnalysis() {
           value={formData.pest}
           onChange={handleChange}
         >
-          <option value="no">No</option>
-          <option value="yes">Yes</option>
+          <option value="no">{t('soilAnalysis.no')}</option>
+          <option value="yes">{t('soilAnalysis.yes')}</option>
         </select>
 
         {formData.pest === "yes" && (
           <div>
             <label className="SoilAnalysisFormLabel" htmlFor="pestType">
-              Which Pest?
+              {t('soilAnalysis.whichPest')}
             </label>
             <select
               id="pestType"
@@ -182,11 +173,11 @@ function SoilAnalysis() {
               value={formData.pestType}
               onChange={handleChange}
             >
-              <option value="aphids">Aphids</option>
-              <option value="mites">Spider Mites</option>
-              <option value="weevils">Weevils</option>
-              <option value="cutworms">Cutworms</option>
-              <option value="other">Other</option>
+              <option value="aphids">{t('soilAnalysis.aphids')}</option>
+              <option value="mites">{t('soilAnalysis.mites')}</option>
+              <option value="weevils">{t('soilAnalysis.weevils')}</option>
+              <option value="cutworms">{t('soilAnalysis.cutworms')}</option>
+              <option value="other">{t('soilAnalysis.other')}</option>
             </select>
           </div>
         )}
@@ -197,12 +188,8 @@ function SoilAnalysis() {
           disableRipple
           onClick={analyzeSoil}
         >
-          Get Analysis
+          {t('soilAnalysis.getAnalysis')}
         </StyledButton>
-
-        {/* <button type="button" onClick={analyzeSoil}>
-          Get Analysis
-        </button> */}
       </form>
 
       <div id="suggestion" className="suggestion-box">

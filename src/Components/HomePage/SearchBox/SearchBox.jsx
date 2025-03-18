@@ -1,19 +1,36 @@
-import React from 'react'
-import './SearchBox.css'
-import { StyledButton } from '../../../App'
+import React from "react";
+import "./SearchBox.css";
+import { StyledButton } from "../../../App";
+import { useTranslation } from "react-i18next";
 
 export default function SearchBox() {
+  const { t } = useTranslation();
+
   return (
-    <div className='SearchBox'>
-      <div className='HSSearchContainer'>
-                <div className='HSSearchContainerE'> <h4>Equipment</h4> <button>Choose a equipment</button> </div>
-                <div className='HSSearchContainerL'> <h4>Location</h4> <button>Choose a location</button> </div>
-                <div className='HSSearchContainerP'> <h4>Pick Up Date</h4> <button>Choose a date</button> </div>
-                <div className='HSSearchContainerD'> <h4>Drop Off Date</h4> <button>Choose a date</button> </div>
-                <div className='HSSearchContainerS'>
-                <StyledButton variant="contained" disableElevation disableFocusRipple disableRipple  >Search</StyledButton>
-                </div>
+    <div className="SearchBox">
+      <div className="HSSearchContainer">
+        <div className="HSSearchContainerE">
+          <h4>{t("searchBox.equipment")}</h4>
+          <button>{t("searchBox.chooseEquipment")}</button>
+        </div>
+        <div className="HSSearchContainerL">
+          <h4>{t("searchBox.location")}</h4>
+          <button>{t("searchBox.chooseLocation")}</button>
+        </div>
+        <div className="HSSearchContainerP">
+          <h4>{t("searchBox.pickUpDate")}</h4>
+          <button>{t("searchBox.chooseDate")}</button>
+        </div>
+        <div className="HSSearchContainerD">
+          <h4>{t("searchBox.dropOffDate")}</h4>
+          <button>{t("searchBox.chooseDate")}</button>
+        </div>
+        <div className="HSSearchContainerS">
+          <StyledButton variant="contained" disableElevation disableFocusRipple disableRipple>
+            {t("searchBox.search")}
+          </StyledButton>
+        </div>
       </div>
     </div>
-  )
+  );
 }

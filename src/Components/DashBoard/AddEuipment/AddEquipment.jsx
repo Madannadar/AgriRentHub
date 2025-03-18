@@ -5,7 +5,8 @@ import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { addEquipmentData } from "../../../Firebase/firebbaseFunctions";
 import { useAuth } from "../../../AuthContext";
-import CloseIcon from "@mui/icons-material/Close"; // Import close icon
+import CloseIcon from "@mui/icons-material/Close";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 const ErrorPopup = ({ open, onClose, message }) => {
   return (
@@ -27,6 +28,7 @@ const ErrorPopup = ({ open, onClose, message }) => {
 };
 
 export default function AddEquipment({ setAddEquipment }) {
+  const { t } = useTranslation(); // Use the useTranslation hook
   const [image, setImage] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -34,7 +36,7 @@ export default function AddEquipment({ setAddEquipment }) {
   const [price, setPrice] = useState("");
   const [errorOpen, setErrorOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [loading, setLoading] = useState(false); // New loading state
+  const [loading, setLoading] = useState(false);
 
   const { currentUser } = useAuth();
   const [imagePreview, setImagePreview] = useState(null);
@@ -49,7 +51,7 @@ export default function AddEquipment({ setAddEquipment }) {
 
   const handleSubmit = async () => {
     if (!name || !description || !location || !price || !image) {
-      setErrorMessage("All fields are required!");
+      setErrorMessage(t('addEquipment.allFieldsRequired'));
       setErrorOpen(true);
       return;
     }
@@ -62,16 +64,16 @@ export default function AddEquipment({ setAddEquipment }) {
       Price: price,
     };
 
-    setLoading(true); // Set loading to true when submitting
+    setLoading(true);
 
     try {
       await addEquipmentData(currentUser.uid, equipmentData, image);
       setAddEquipment(false);
     } catch (error) {
-      setErrorMessage("Failed to add equipment. Please try again.");
+      setErrorMessage(t('addEquipment.failedToAdd'));
       setErrorOpen(true);
     } finally {
-      setLoading(false); // Reset loading state after submission
+      setLoading(false);
     }
   };
 
@@ -86,7 +88,7 @@ export default function AddEquipment({ setAddEquipment }) {
           <button
             className="AddEquipmentCloseButton"
             onClick={() => setAddEquipment(false)}
-            aria-label="Close"
+            aria-label={t('addEquipment.close')}
           >
             <CloseIcon />
           </button>
@@ -102,7 +104,7 @@ export default function AddEquipment({ setAddEquipment }) {
             {image && (
               <img
                 src={imagePreview}
-                alt="Equipment Preview"
+                alt={t('addEquipment.imagePreview')}
                 className="EquipmentImagePreview"
               />
             )}
@@ -110,11 +112,11 @@ export default function AddEquipment({ setAddEquipment }) {
           <div className="AddEquipmentSubContainerNameContainer">
             <div className="AddEquipmentSubContainerInputCard">
               <div className="AddEquipmentSubContainerInputCardLabel">
-                Equipment Name:
+                {t('addEquipment.equipmentName')}:
               </div>
               <input
                 className="AddEquipmentSubContainerCardInput"
-                placeholder="Equipment Name"
+                placeholder={t('addEquipment.equipmentName')}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -123,11 +125,11 @@ export default function AddEquipment({ setAddEquipment }) {
           <div className="AddEquipmentSubContainerDescriptionContainer">
             <div className="AddEquipmentSubContainerInputCard">
               <div className="AddEquipmentSubContainerInputCardLabel">
-                Equipment Description:
+                {t('addEquipment.equipmentDescription')}:
               </div>
               <input
                 className="AddEquipmentSubContainerCardInput"
-                placeholder="Equipment Description"
+                placeholder={t('addEquipment.equipmentDescription')}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
@@ -136,11 +138,11 @@ export default function AddEquipment({ setAddEquipment }) {
           <div className="AddEquipmentSubContainerLocationContainer">
             <div className="AddEquipmentSubContainerInputCard">
               <div className="AddEquipmentSubContainerInputCardLabel">
-                Location:
+                {t('addEquipment.location')}:
               </div>
               <input
                 className="AddEquipmentSubContainerCardInput"
-                placeholder="Location"
+                placeholder={t('addEquipment.location')}
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               />
@@ -149,12 +151,12 @@ export default function AddEquipment({ setAddEquipment }) {
           <div className="AddEquipmentSubContainerPriceContainer">
             <div className="AddEquipmentSubContainerInputCard">
               <div className="AddEquipmentSubContainerInputCardLabel">
-                Price:
+                {t('addEquipment.price')}:
               </div>
               <input
                 type="number"
                 className="AddEquipmentSubContainerCardInput"
-                placeholder="Price"
+                placeholder={t('addEquipment.price')}
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
@@ -167,9 +169,9 @@ export default function AddEquipment({ setAddEquipment }) {
               disableFocusRipple
               disableRipple
               onClick={handleSubmit}
-              disabled={loading} // Disable button if loading
+              disabled={loading}
             >
-              {loading ? "Adding..." : "Add"} {/* Change button text */}
+              {loading ? t('addEquipment.addingButton') : t('addEquipment.addButton')}
             </StyledButton>
           </div>
         </div>
