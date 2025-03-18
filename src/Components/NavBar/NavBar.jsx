@@ -2,21 +2,33 @@ import { useNavigate } from "react-router-dom";
 import { StyledButton } from "../../App";
 import "./NavBar.css";
 import { useAuth } from "../../AuthContext";
-// import {Button} from '@mui/material';
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Profile from "../Profile/Profile";
+import { useTranslation } from "react-i18next";
+
+const languages = [
+  { code: "en", lang: "English" },
+  { code: "hi", lang: "Hindi" },
+];
 
 function NavBar() {
   const navigate = useNavigate();
   const { currentUser, loading } = useAuth();
   const [showProfile, setShowProfile] = useState(false);
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    document.body.dir = i18n.dir(i18n.language);
+  }, [i18n.language]);
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <div className="NavBarContainer">
-      <div className="NavBarHead" onClick={() => navigate("/")}>
-        FieldRentals
-      </div>
+      <div className="NavBarHead" onClick={() => navigate("/")}>FieldRentals</div>
       <div className="NavBarButtonContainer">
         <div className="NavBarLinks">
           {currentUser ? (
@@ -48,6 +60,19 @@ function NavBar() {
           )}
 
           {showProfile ? <Profile setShowProfile={setShowProfile} /> : null}
+        </div>
+        
+        {/* Language Selector */}
+        <div className="LanguageSelector">
+          {languages.map((lng) => (
+            <button
+              className={lng.code === i18n.language ? "selected" : ""}
+              key={lng.code}
+              onClick={() => changeLanguage(lng.code)}
+            >
+              {lng.lang}
+            </button>
+          ))}
         </div>
       </div>
     </div>

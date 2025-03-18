@@ -5,28 +5,21 @@
   font-size: var(--text-big);
   font-weight: var(--text-bold);
   color: var(--primary-black);
+  align-items: center;
 }
 
 .NavBarButtonContainer {
   display: flex;
-  gap: 40px;
+  gap: 30px;
   align-items: center;
 }
 
 .NavBarLinks {
   display: flex;
-  gap: 40px;
+  gap: 30px;
 }
 
-.NavBarLinks a {
-  border: none;
-  background: none;
-  font-size: var(--text-small);
-  font-weight: var(--text-regular);
-  color: var(--primary-black);
-  text-decoration: none;
-}
-
+.NavBarLinks a,
 .NavBarLinks div {
   border: none;
   background: none;
@@ -34,29 +27,59 @@
   font-weight: var(--text-regular);
   color: var(--primary-black);
   text-decoration: none;
+  cursor: pointer;
 }
 
 .NavBarSign {
   display: flex;
   align-items: center;
-  /* cursor: pointer; */
 }
 
+/* Language Selector Styling */
+.LanguageSelector {
+  display: flex;
+  gap: 10px;
+}
+
+.LanguageSelector button {
+  background: none;
+  border: 1px solid var(--primary-black);
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: var(--text-small);
+  font-weight: var(--text-regular);
+  color: var(--primary-black);
+  transition: all 0.3s ease-in-out;
+}
+
+.LanguageSelector button.selected {
+  background: var(--primary-black);
+  color: white;
+}
+
+.LanguageSelector button:hover {
+  background: var(--primary-black);
+  color: white;
+}
+
+/* Responsive Design */
 @media screen and (max-width: 1000px) {
   .NavBarContainer {
-    display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
   }
 
   .NavBarButtonContainer {
     justify-content: space-between;
-    align-items: center;
-    display: flex;
-    gap: 0px;
+    flex-wrap: wrap;
+    gap: 15px;
   }
 
   .NavBarLinks {
     gap: 15px;
+  }
+
+  .LanguageSelector {
+    justify-content: center;
   }
 }

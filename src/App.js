@@ -1,26 +1,22 @@
 import "./App.css";
 import {
   BrowserRouter,
-  Link,
-  Navigate,
   Route,
   Routes,
-  useNavigate,
+  Navigate,
 } from "react-router-dom";
 import AuthPage from "./Components/AuthPage/AuthPage";
 import HomePage from "./Components/HomePage/HomePage";
 import { styled, Button, TextField } from "@mui/material";
 import { AuthProvider, useAuth } from "./AuthContext";
-import { useContext } from "react";
-import { signOutUser } from "./Firebase/authFunction";
 import Dashboard from "./Components/DashBoard/Dashboard";
-// import TermsPage from "../../testing/src/TermsPage";
 import Terms from "./Components/HomePage/Footer/AllLinks/Terms";
 import PrivacyPolicy from "./Components/HomePage/Footer/AllLinks/PrivacyPolicy";
 import LN from "./Components/HomePage/Footer/AllLinks/LegalNotice";
 import Accesibility from "./Components/HomePage/Footer/AllLinks/Accesibility";
 import HomePageAfterLogIn from "./Components/HomePageAfterLogIn/HomePageAfterLogIn";
 import Loading from "./Components/Loading/Loading";
+import LanguageSelector from "./Components/Multi-lang/language_selector";
 
 export const StyledButton = styled(Button)(() => ({
   textTransform: "none",
@@ -84,29 +80,32 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePagePath />} />
-          <Route
-            path="/login-or-register"
-            element={
-              <PrivateRouteWithoutSignIn>
-                <AuthPage />
-              </PrivateRouteWithoutSignIn>
-            }
-          />
-          <Route
-            path="/our-services"
-            element={
-              <PrivateRouteWithSignIn>
-                <Dashboard />
-              </PrivateRouteWithSignIn>
-            }
-          />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
-          <Route path="/LegalNotice" element={<LN />} />
-          <Route path="/Accesibility" element={<Accesibility />} />
-        </Routes>
+        <div className="app-container">
+          {/* <LanguageSelector /> Add Language Selector at the top? */}
+          <Routes>
+            <Route path="/" element={<HomePagePath />} />
+            <Route
+              path="/login-or-register"
+              element={
+                <PrivateRouteWithoutSignIn>
+                  <AuthPage />
+                </PrivateRouteWithoutSignIn>
+              }
+            />
+            <Route
+              path="/our-services"
+              element={
+                <PrivateRouteWithSignIn>
+                  <Dashboard />
+                </PrivateRouteWithSignIn>
+              }
+            />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+            <Route path="/LegalNotice" element={<LN />} />
+            <Route path="/Accesibility" element={<Accesibility />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </AuthProvider>
   );
