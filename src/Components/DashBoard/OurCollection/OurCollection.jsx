@@ -96,7 +96,7 @@ export default function OurCollection() {
                 {equipment.Location}
               </div>
               <div>
-                <b>Price: </b>${equipment.Price} per day
+                <b>Price: </b>Rs {equipment.Price} per day
               </div>
               <StyledButton
                 variant="contained"
