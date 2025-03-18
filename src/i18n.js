@@ -318,6 +318,13 @@ i18n
             supportNumber: "Support No. :",
             supportEmail: "Support Email Id :",
           },
+          footer: {
+            fieldRentals: "FieldRentals",
+            terms: "Terms",
+            privacyPolicy: "Privacy Policy",
+            legalNotice: "Legal Notice",
+            accessibility: "Accessibility",
+          },
         }
       },
       hi: {
@@ -328,12 +335,12 @@ i18n
             getStarted: "शुरू करें"
           },
           footer: {
-            title: "फील्ड रेंटल्स",
-            terms: "शर्तें",
-            privacyPolicy: "गोपनीयता नीति",
-            legalNotice: "कानूनी सूचना",
-            accessibility: "पहुँच योग्यता",
-          },
+        fieldRentals: "FieldRentals",
+        terms: "Terms",
+        privacyPolicy: "Privacy Policy",
+        legalNotice: "Legal Notice",
+        accessibility: "Accessibility",
+      },
           profile: {
             title: "प्रोफ़ाइल",
             personalInfo: "व्यक्तिगत जानकारी",
@@ -628,6 +635,13 @@ i18n
           supportAndHelp: {
             supportNumber: "समर्थन नंबर :",
             supportEmail: "समर्थन ईमेल आईडी :",
+          },
+          footer: {
+            fieldRentals: "फील्ड रेंटल्स",
+            terms: "नियम और शर्तें",
+            privacyPolicy: "गोपनीयता नीति",
+            legalNotice: "कानूनी सूचना",
+            accessibility: "पहुंच",
           },
         }
       }
