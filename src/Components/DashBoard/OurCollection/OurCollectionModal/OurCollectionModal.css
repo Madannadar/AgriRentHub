@@ -1,4 +1,108 @@
-/* Modal.css */
+/* OurCollection.css */
+
+.OurCollectionContainer {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.OurCollectionTitle {
+  font-size: var(--text-big);
+  font-weight: var(--text-bold);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Search Feature Styles */
+.OurCollectionSearchContainer {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.OurCollectionSearchInput {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.OurCollectionFilterSelect {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+}
+
+.OurCollectionNoResults {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Card Grid */
+.OurCollectionSubContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.OurCollectionCardContainer {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.OurCollectionCardContainer:hover {
+  transform: translateY(-5px);
+}
+
+.OurCollectionCardImageContainer {
+  height: 200px;
+  overflow: hidden;
+}
+
+.OurCollectionCardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.OurCollectionCardContainer:hover .OurCollectionCardImage {
+  transform: scale(1.05);
+}
+
+.OurCollectionCardTextContainer {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.OurCollectionCardTextEquipmentName {
+  font-size: var(--text-medium);
+  font-weight: var(--text-bold);
+}
+
+/* Pagination */
+.OurCollectionContainerPaginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 15px;
+}
+
+/* Modal Styles (from Modal.css) */
 .OurCollectionModalOverlay {
   position: fixed;
   top: 0;
@@ -9,6 +113,7 @@
   justify-content: center;
   align-items: center;
   overflow: auto;
+  z-index: 1000;
 }
 
 .OurCollectionModalBackground {
@@ -27,6 +132,7 @@
   border-radius: 5px;
   position: relative;
   width: var(--width);
+  z-index: 1001;
 }
 
 .close-button {
@@ -46,13 +152,6 @@
 }
 
 .OurCollectionModalImageContainer {
-  grid-area: OurCollectionModalImageContainer;
-  border: 2px solid var(--primary-black);
-  border-radius: 5px;
-  /* padding: 20px; */
-}
-
-.OurCollectionModalImageContainer {
   width: 400px;
   height: 400px;
   border: 2px solid var(--primary-black);
@@ -65,7 +164,6 @@
 
 .OurCollectionModalImageContainer img {
   width: 100%;
-  /* height: 100%; */
   object-fit: cover;
 }
 
@@ -80,7 +178,18 @@
   font-weight: var(--text-bold);
 }
 
+/* Responsive Design */
 @media screen and (max-width: 1000px) {
+  .OurCollectionSearchContainer {
+    flex-direction: column;
+    max-width: 100%;
+  }
+  
+  .OurCollectionSearchInput,
+  .OurCollectionFilterSelect {
+    width: 100%;
+  }
+  
   .OurCollectionModalOverlay {
     top: 40px;
     bottom: 40px;

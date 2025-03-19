@@ -16,13 +16,13 @@ i18n
             subtitle: "Discover, book, and manage top-quality equipment and land with just a few clicks.",
             getStarted: "Get Started"
           },
-          footer: {
-            title: "FieldRentals",
-            terms: "Terms",
-            privacyPolicy: "Privacy Policy",
-            legalNotice: "Legal Notice",
-            accessibility: "Accessibility",
-          },
+          // footer: {
+          //   title: "FieldRentals",
+          //   terms: "Terms",
+          //   privacyPolicy: "Privacy Policy",
+          //   legalNotice: "Legal Notice",
+          //   accessibility: "Accessibility",
+          // },
           profile: {
             title: "Profile",
             personalInfo: "Personal Information",
@@ -80,9 +80,9 @@ i18n
             ourServices: "Our Services",
             logIn: "Log In",
           },
-          footer: {
-            title: "FieldRentals",
-          },
+          // footer: {
+          //   title: "FieldRentals",
+          // },
           auth: {
             title: "FieldRentals",
             email: "Email",
@@ -107,9 +107,9 @@ i18n
               passwordMismatch: "Passwords do not match",
             }
           },
-          footer: {
-            title: "FieldRentals",
-          },
+          // footer: {
+          //   title: "FieldRentals",
+          // },
           addEquipment: {
             title: "Add Equipment",
             equipmentName: "Equipment Name",
@@ -325,6 +325,34 @@ i18n
             legalNotice: "Legal Notice",
             accessibility: "Accessibility",
           },
+          nav: {
+            home: "Home",
+            aboutUs: "About Us",
+            services: "Services",
+            ourServices: "Our Services",
+            logIn: "Log In",
+          },
+          footer: {
+            title: "FieldRentals",
+          },
+          "ourCollection": {
+            "title": "Our Collection",
+            "error": "Error",
+            "retry": "Retry",
+            "location": "Location",
+            "price": "Price",
+            "perDay": "per day",
+            "bookNow": "Book Now",
+            "previous": "Previous",
+            "page": "Page",
+            "of": "of",
+            "next": "Next",
+            "searchPlaceholder": "Search equipment...",
+            "searchAll": "All",
+            "searchByName": "By Name",
+            "searchByLocation": "By Location",
+            "noResults": "No equipment found matching your search"
+          }
         }
       },
       hi: {
@@ -334,13 +362,7 @@ i18n
             subtitle: "केवल कुछ क्लिक में उच्च गुणवत्ता वाले उपकरण और भूमि को खोजें, बुक करें और प्रबंधित करें।",
             getStarted: "शुरू करें"
           },
-          footer: {
-        fieldRentals: "FieldRentals",
-        terms: "Terms",
-        privacyPolicy: "Privacy Policy",
-        legalNotice: "Legal Notice",
-        accessibility: "Accessibility",
-      },
+          
           profile: {
             title: "प्रोफ़ाइल",
             personalInfo: "व्यक्तिगत जानकारी",
@@ -398,9 +420,9 @@ i18n
             ourServices: "हमारी सेवाएँ",
             logIn: "लॉग इन",
           },
-          footer: {
-            title: "फील्ड रेंटल्स",
-          },
+          // footer: {
+          //   title: "फील्ड रेंटल्स",
+          // },
           auth: {
             title: "फील्ड रेंटल्स",
             email: "ईमेल",
@@ -425,9 +447,9 @@ i18n
               passwordMismatch: "पासवर्ड मेल नहीं खाते",
             }
           },
-          footer: {
-            title: "फील्ड रेंटल्स",
-          },
+          // footer: {
+          //   title: "फील्ड रेंटल्स",
+          // },
           addEquipment: {
             title: "उपकरण जोड़ें",
             equipmentName: "उपकरण का नाम",
@@ -643,6 +665,53 @@ i18n
             legalNotice: "कानूनी सूचना",
             accessibility: "पहुंच",
           },
+          nav: {
+            home: "होम",
+            aboutUs: "हमारे बारे में",
+            services: "सेवा",
+            ourServices: "हमारी सेवाएँ",
+            logIn: "लॉग इन",
+          },
+          footer: {
+            title: "फील्ड रेंटल्स",
+          },
+          "ourCollection": {
+          // existing keys...
+          "searchPlaceholder": "उपकरण खोजें...",
+          "searchAll": "सभी",
+          "searchByName": "नाम से",
+          "searchByLocation": "स्थान से",
+          "noResults": "आपकी खोज से मेल खाने वाला कोई उपकरण नहीं मिला",
+          "title": "हमारा संग्रह",
+          "error": "त्रुटि",
+          "retry": "पुन: प्रयास करें",
+          "location": "स्थान",
+          "price": "कीमत",
+          "perDay": "प्रति दिन",
+          "bookNow": "अभी बुक करें",
+          "previous": "पिछला",
+          "page": "पृष्ठ",
+          "of": "का",
+          "next": "अगला"
+        },
+        "ourCollection": {
+    "title": "हमारा संग्रह",
+    "error": "त्रुटि",
+    "retry": "पुन: प्रयास करें",
+    "location": "स्थान",
+    "price": "कीमत",
+    "perDay": "प्रति दिन",
+    "bookNow": "अभी बुक करें",
+    "previous": "पिछला",
+    "page": "पृष्ठ",
+    "of": "का",
+    "next": "अगला",
+    "searchPlaceholder": "उपकरण खोजें...",
+    "searchAll": "सभी",
+    "searchByName": "नाम से",
+    "searchByLocation": "स्थान से",
+    "noResults": "आपकी खोज से मेल खाने वाला कोई उपकरण नहीं मिला"
+  }
         }
       }
     }

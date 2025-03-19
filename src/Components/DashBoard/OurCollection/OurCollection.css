@@ -1,76 +1,33 @@
-.OurCollectionContainer {
+/* Add these styles to your OurCollection.css file */
+
+.OurCollectionSearchContainer {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 30px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   align-items: center;
-  gap: 20px;
-  padding: 40px;
-  color: var(--primary-black);
-}
-
-.OurCollectionTitle {
-  font-size: var(--text-big);
-  font-weight: var(--text-bold);
-}
-
-.OurCollectionSubContainer {
-  width: calc(var(--width));
-  padding: 40px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-}
-
-.OurCollectionCardContainer {
-  border: 2px solid var(--primary-black);
-  border-radius: 5px;
-}
-
-.OurCollectionCardTextContainer {
-  display: flex;
-  flex-direction: column;
   gap: 10px;
-  padding: 20px;
-  font-size: var(--text-small);
-  font-weight: var(--text-regular);
-  color: var(--primary-black);
 }
 
-.OurCollectionCardImageContainer {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 5px;
+.OurCollectionSearchInput {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
-.OurCollectionCardImage {
-  width: 100%;
-  aspect-ratio: 1.5 / 1;
-  object-fit: cover;
+.OurCollectionFilterSelect {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
 }
 
-.OurCollectionCardTextEquipmentName {
-  font-size: var(--text-big);
-  font-weight: var(--text-bold);
-}
-
-.OurCollectionCardTextContainer button {
-  width: fit-content;
-}
-
-.OurCollectionContainerPaginationContainer {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-@media screen and (max-width: 1000px) {
-  .OurCollectionSubContainer {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .OurCollectionSubContainer {
-    grid-template-columns: repeat(1, 1fr);
-  }
+.OurCollectionNoResults {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 18px;
+  color: #666;
 }

@@ -29,17 +29,19 @@ function NavBar() {
   return (
     <div className="NavBarContainer">
       <div className="NavBarHead" onClick={() => navigate("/")}>
-        {t("footer.title")}
+        {t("footer.title")} {/* Use translation key for the title */}
       </div>
       <div className="NavBarButtonContainer">
         <div className="NavBarLinks">
           {currentUser ? (
-            <div onClick={() => navigate("/our-services")}>{t("nav.ourServices")}</div>
+            <div onClick={() => navigate("/our-services")}>
+              {t("nav.ourServices")} {/* Use translation key for "Our Services" */}
+            </div>
           ) : (
             <>
-              <a href="#Home">{t("nav.home")}</a>
-              <a href="#AboutUs">{t("nav.aboutUs")}</a>
-              <a href="#OurServices">{t("nav.services")}</a>
+              <a href="#Home">{t("nav.home")}</a> {/* Use translation key for "Home" */}
+              <a href="#AboutUs">{t("nav.aboutUs")}</a> {/* Use translation key for "About Us" */}
+              <a href="#OurServices">{t("nav.services")}</a> {/* Use translation key for "Services" */}
             </>
           )}
         </div>
@@ -57,13 +59,13 @@ function NavBar() {
               disableRipple
               onClick={() => navigate("/login-or-register")}
             >
-              {t("nav.logIn")}
+              {t("nav.logIn")} {/* Use translation key for "Log In" */}
             </StyledButton>
           )}
 
           {showProfile ? <Profile setShowProfile={setShowProfile} /> : null}
         </div>
-        
+
         {/* Language Selector */}
         <div className="LanguageSelector">
           {languages.map((lng) => (
