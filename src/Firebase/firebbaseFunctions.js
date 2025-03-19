@@ -376,3 +376,4 @@ export async function deleteEquipmentByName(equipmentName) {
     throw error; // Propagate error
   }
 }
+
