@@ -131,7 +131,7 @@ const OurCollectionModal = ({ isOpen, onClose, equipment }) => {
                 {equipment.Location}
               </div>
               <div className="OurCollectionModalPriceContainer">
-                <b>{t('ourCollectionModal.price')}: </b>${equipment.Price} {t('ourCollectionModal.perDay')}
+                <b>{t('ourCollectionModal.price')}: </b>Rs {equipment.Price} {t('ourCollectionModal.perDay')}
               </div>
               <div className="OurCollectionModalPickUpDateContainer">
                 <b>{t('ourCollectionModal.pickUpDate')}: </b>
@@ -160,7 +160,7 @@ const OurCollectionModal = ({ isOpen, onClose, equipment }) => {
               </div>
               <div className="OurCollectionModalTotal">
                 <b>{t('ourCollectionModal.total')}: </b>
-                <span>${equipment.Price * numberOfDays}</span>
+                <span>Rs {equipment.Price * numberOfDays}</span>
               </div>
               <div className="OurCollectionModalButtonContainer">
                 <StyledButton
